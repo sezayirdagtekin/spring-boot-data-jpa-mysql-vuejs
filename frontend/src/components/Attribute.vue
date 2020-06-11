@@ -1,7 +1,7 @@
 <template>
   <div class="container">
    
-   <h3 class="font-weight-bold text-justify">   {{msg}} </h3>
+   <h3 class="font-weight-bold text-justify">   {{pageHeader}} </h3>
 
     <form>
       <div class="form-group">
@@ -45,7 +45,8 @@ export default {
       attribute: {
         title: "",
         type: ""
-      }
+      },
+      pageHeader: "Welcome to admin page"
     };
   },
   methods: {
