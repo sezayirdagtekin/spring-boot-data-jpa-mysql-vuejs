@@ -11,7 +11,7 @@
           v-model="person.fullname"
           class="form-control"
           id="forFulname"
-          placeholder="Sezayir Dagtekin"
+          placeholder="Please enter full name "
         />
       </div>
       <div class="form-group">
@@ -21,7 +21,7 @@
           class="form-control"
           v-model="person.gsm"
           id="forMobile"
-          placeholder="905324441000"
+          placeholder="e.g. 905324441000"
         />
       </div>
 
@@ -32,7 +32,7 @@
           class="form-control"
           v-model="person.email"
           id="forEmail"
-          placeholder="sezayir99@netflix.com"
+          placeholder="e.g. sezayir99@netflix.com"
         />
       </div>
       <div class="form-group">

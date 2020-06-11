@@ -1,17 +1,19 @@
 <template>
   <div id="app">
     <img  class="img-fluid" alt="Vue logo" src="./assets/logo.png">
-    <usermng msg="User Management"/>
+    <nav>
+        <router-link to='/admin' class="font-weight-bold">Admin</router-link>
+        <router-link to='/user' class="font-weight-bold ml-2">User</router-link>
+    </nav>
+    <router-view />
   </div>
 </template>
 
 <script>
-import Usermanagement from './components/Usermanagement.vue'
 
 export default {
   name: 'App',
   components: {
-   usermng: Usermanagement
   }
 }
 </script>

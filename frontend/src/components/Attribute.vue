@@ -5,18 +5,18 @@
 
     <form>
       <div class="form-group">
-        <label for="forTitle" class="font-weight-bold">Attribute title</label>
+        <label for="forTitle" class="font-weight-bold">Title</label>
         <input
           type="text"
           v-model="attribute.title"
           class="form-control"
           id="forTitle"
-          placeholder="title"
+          placeholder="Please enter  attribute title"
         />
       </div>
 
       <div class="form-group">
-        <label for="forCombo" class="font-weight-bold">Attribute</label>
+        <label for="forCombo" class="font-weight-bold">Type</label>
         <select class="form-control" v-model="attribute.type" id="forCombo">
           <option>Text</option>
           <option>File</option>
