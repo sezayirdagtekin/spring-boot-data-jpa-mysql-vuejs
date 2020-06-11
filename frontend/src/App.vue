@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img  class="img-fluid" alt="Vue logo" src="./assets/logo.png">
+    <attribute msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Attribute from './components/Attribute.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+   attribute: Attribute
   }
 }
 </script>
