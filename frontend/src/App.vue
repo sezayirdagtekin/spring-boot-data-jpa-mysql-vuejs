@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img  class="img-fluid" alt="Vue logo" src="./assets/logo.png">
-    <attribute msg="Welcome to Your Vue.js App"/>
+    <usermng msg="User Management"/>
   </div>
 </template>
 
 <script>
-import Attribute from './components/Attribute.vue'
+import Usermanagement from './components/Usermanagement.vue'
 
 export default {
   name: 'App',
   components: {
-   attribute: Attribute
+   usermng: Usermanagement
   }
 }
 </script>
