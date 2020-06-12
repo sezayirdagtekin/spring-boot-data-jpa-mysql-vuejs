@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-   
-   <h3 class="font-weight-bold text-justify">   {{pageHeader}} </h3>
+    <h3 class="font-weight-bold text-justify">{{pageHeader}}</h3>
 
     <form>
       <div class="form-group">
@@ -38,9 +37,7 @@
       <div class="form-group">
         <label for="forCombo" class="font-weight-bold">Attribute</label>
         <select class="form-control" v-model="person.attribute" id="forCombo">
-          <option>Text</option>
-          <option>File</option>
-          <option>Multi</option>
+          <option v-for="item in items" :value="item" v-bind:key="item.title">{{item.title}}</option>
         </select>
       </div>
       <div class="form-group my-3">
@@ -56,30 +53,48 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
 export default {
-  name: "Usermanagement",
+  name: 'Usermanagement',
   props: {
     msg: String
   },
   data() {
     return {
+      items: null,
       person: {
-        fullname: "",
-        email: "",
-        gsm: "",
-        attribute: "Text"
+        fullname: '',
+        email: '',
+        gsm: '',
+        attribute: ''
       },
-      pageHeader: "Welcome to user management"
+      pageHeader: 'Welcome to user management'
     };
   },
+
+  async created() {
+    console.log('Inside Atribute created hook...');
+    this.getAllAttributes();
+  },
+
   methods: {
     save() {
-      console.log("call save method:" + this.person.fullname);
+      //Save logic not implemented
+      console.log('call save method with data:' + JSON.stringify(this.person));
     },
     clear() {
-      console.log("call clear method");
-      this.person.fullname = ""
-      this.person.email = ""
-      this.person.gsm = ""
+      console.log('call clear method');
+      this.person.fullname = '';
+      this.person.email = '';
+      this.person.gsm = '';
+    },
+
+    async getAllAttributes() {
+      try {
+        console.log('get all attributes...');
+        const response = await this.$axios.get("/attributes");
+        this.items = response.data;
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 };

@@ -36,23 +36,23 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
 export default {
-  name: "Attribute",
+  name: 'Attribute',
   props: {
     msg: String
   },
   data() {
     return {
       attribute: {
-        title: "",
-        type: ""
+        title: '',
+        type: ''
       },
         atrArray: [],
-      pageHeader: "Welcome to admin page"
+      pageHeader: 'Welcome to admin page'
     };
   },
 
     async created() {
-      console.log("Inside Atribute created hook..")
+      console.log('Inside Atribute created hook..');
        this.getAttributessAsync();
     },
 
@@ -62,24 +62,21 @@ export default {
           console.log("get all attributes..")
           const response =  await this.$axios.get("/attributes");
           this.atrArray = response.data;
-           console.log("response.data" +response.data);
         } catch (error) {
           this.errors.push(error);
         }
       },
    async save() {
-      console.log("call save method:" + this.attribute.title);
       try {
         const response= await this.$axios.post("/add",this.attribute);
-        console.log("saved response is:"+response)
+        console.log('saved attribute  is:'+JSON.stringify(response.data));
       } catch (error) {
         console.log(error);
-        //this.error.push(error);
       }
     },
     clear() {
-      console.log("call clear method");
-      this.attribute.title = ""
+      console.log("Call clear method");
+      this.attribute.title = ''
     }
   }
 };
