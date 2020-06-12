@@ -66,7 +66,7 @@ export default {
         gsm: '',
         attribute: ''
       },
-      pageHeader: 'Welcome to user management'
+      pageHeader: 'User Management'
     };
   },
 

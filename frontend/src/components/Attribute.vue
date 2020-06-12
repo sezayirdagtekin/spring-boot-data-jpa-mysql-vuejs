@@ -17,9 +17,7 @@
         <div class="form-group">
           <label for="forCombo" class="font-weight-bold">Type</label>
           <select class="form-control" v-model="attribute.type" id="forCombo">
-            <option>Text</option>
-            <option>File</option>
-            <option>Multi</option>
+          <option v-for="item in optionTypes" :value="item" v-bind:key="item">{{item}}</option>
           </select>
         </div>
         <div class="form-group my-3">
@@ -63,7 +61,8 @@ export default {
         type: ""
       },
       atrArray: [],
-      pageHeader: "Welcome to admin page"
+      optionTypes: ['Text','File','Multi Select'],
+      pageHeader: "Admin Page"
     };
   },
 
@@ -88,6 +87,7 @@ export default {
         console.log("saved attribute  is:" + JSON.stringify(response.data));
         //Lad lsit again
         this.getAttributessAsync();
+         this.clear()
       } catch (error) {
         console.log(error);
       }
