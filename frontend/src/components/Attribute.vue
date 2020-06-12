@@ -1,33 +1,49 @@
 <template>
   <div class="container">
-   
-   <h3 class="font-weight-bold text-justify">   {{pageHeader}} </h3>
+    <h3 class="font-weight-bold text-justify">{{pageHeader}}</h3>
+    <div>
+      <form>
+        <div class="form-group">
+          <label for="forTitle" class="font-weight-bold">Title</label>
+          <input
+            type="text"
+            v-model="attribute.title"
+            class="form-control"
+            id="forTitle"
+            placeholder="Please enter  attribute title"
+          />
+        </div>
 
-    <form>
-      <div class="form-group">
-        <label for="forTitle" class="font-weight-bold">Title</label>
-        <input
-          type="text"
-          v-model="attribute.title"
-          class="form-control"
-          id="forTitle"
-          placeholder="Please enter  attribute title"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="forCombo" class="font-weight-bold">Type</label>
-        <select class="form-control" v-model="attribute.type" id="forCombo">
-          <option>Text</option>
-          <option>File</option>
-          <option>Multi</option>
-        </select>
-      </div>
-      <div class="form-group my-3">
-        <button type="button" class="btn btn-primary mr-2" v-on:click="save">Save</button>
-        <button type="button" class="btn btn-secondary" v-on:click="clear">Clear</button>
-      </div>
-    </form>
+        <div class="form-group">
+          <label for="forCombo" class="font-weight-bold">Type</label>
+          <select class="form-control" v-model="attribute.type" id="forCombo">
+            <option>Text</option>
+            <option>File</option>
+            <option>Multi</option>
+          </select>
+        </div>
+        <div class="form-group my-3">
+          <button type="button" class="btn btn-success mr-2" v-on:click="save">Save</button>
+          <button type="button" class="btn btn-secondary" v-on:click="clear">Clear</button>
+        </div>
+      </form>
+    </div>
+    <div>
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for=" item in atrArray" :key="item.title">
+            <td>{{item.title}}</td>
+            <td>{{item.type}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -36,47 +52,49 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
 export default {
-  name: 'Attribute',
+  name: "Attribute",
   props: {
     msg: String
   },
   data() {
     return {
       attribute: {
-        title: '',
-        type: ''
+        title: "",
+        type: ""
       },
-        atrArray: [],
-      pageHeader: 'Welcome to admin page'
+      atrArray: [],
+      pageHeader: "Welcome to admin page"
     };
   },
 
-    async created() {
-      console.log('Inside Atribute created hook..');
-       this.getAttributessAsync();
-    },
+  async created() {
+    console.log("Inside Atribute created hook..");
+    this.getAttributessAsync();
+  },
 
   methods: {
-     async getAttributessAsync() {
-        try {
-          console.log("get all attributes..")
-          const response =  await this.$axios.get("/attributes");
-          this.atrArray = response.data;
-        } catch (error) {
-          this.errors.push(error);
-        }
-      },
-   async save() {
+    async getAttributessAsync() {
       try {
-        const response= await this.$axios.post("/add",this.attribute);
-        console.log('saved attribute  is:'+JSON.stringify(response.data));
+        console.log("get all attributes..");
+        const response = await this.$axios.get("/attributes");
+        this.atrArray = response.data;
+      } catch (error) {
+        this.errors.push(error);
+      }
+    },
+    async save() {
+      try {
+        const response = await this.$axios.post("/add", this.attribute);
+        console.log("saved attribute  is:" + JSON.stringify(response.data));
+        //Lad lsit again
+        this.getAttributessAsync();
       } catch (error) {
         console.log(error);
       }
     },
     clear() {
       console.log("Call clear method");
-      this.attribute.title = ''
+      this.attribute.title = "";
     }
   }
 };
