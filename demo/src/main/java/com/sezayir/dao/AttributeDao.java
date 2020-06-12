@@ -1,7 +1,6 @@
 package com.sezayir.dao;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.sezayir.model.Attribute;
@@ -14,6 +13,10 @@ public class AttributeDao {
 
 	public List<Attribute> getAllAtributes() {
 		return attributeRepository.findAll();
+	}
+
+	public Attribute save(Attribute entity) {
+		return attributeRepository.save(entity);
 	}
 
 }

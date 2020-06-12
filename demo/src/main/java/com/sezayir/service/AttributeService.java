@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.sezayir.dao.AttributeDao;
 import com.sezayir.model.Attribute;
 
@@ -16,6 +15,10 @@ public class AttributeService {
 
 	public List<Attribute> getAllAttributes() {
 		return attributeDao.getAllAtributes();
+	}
+
+	public Attribute save(Attribute entity) {
+		return attributeDao.save(entity);
 	}
 
 }
