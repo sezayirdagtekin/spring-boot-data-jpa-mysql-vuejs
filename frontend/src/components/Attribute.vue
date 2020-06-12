@@ -67,8 +67,15 @@ export default {
           this.errors.push(error);
         }
       },
-    save() {
+   async save() {
       console.log("call save method:" + this.attribute.title);
+      try {
+        const response= await this.$axios.post("/add",this.attribute);
+        console.log("saved response is:"+response)
+      } catch (error) {
+        console.log(error);
+        //this.error.push(error);
+      }
     },
     clear() {
       console.log("call clear method");
