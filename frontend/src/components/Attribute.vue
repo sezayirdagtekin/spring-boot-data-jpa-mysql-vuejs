@@ -46,17 +46,33 @@ export default {
         title: "",
         type: ""
       },
+        atrArray: [],
       pageHeader: "Welcome to admin page"
     };
   },
+
+    async created() {
+      console.log("Inside Atribute created hook..")
+       this.getAttributessAsync();
+    },
+
   methods: {
+     async getAttributessAsync() {
+        try {
+          console.log("get all attributes..")
+          const response =  await this.$axios.get("/attributes");
+          this.atrArray = response.data;
+           console.log("response.data" +response.data);
+        } catch (error) {
+          this.errors.push(error);
+        }
+      },
     save() {
       console.log("call save method:" + this.attribute.title);
     },
     clear() {
       console.log("call clear method");
       this.attribute.title = ""
-
     }
   }
 };
